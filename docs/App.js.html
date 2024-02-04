@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileOverview This file contains the main component of the React application, which is a form.
  * @module App
  * @requires react
@@ -96,7 +124,7 @@ function App() {
   useEffect(() => {
     if (form.dateNaissance) {
       const age = calculerAge(form.dateNaissance);
-      if (age < 18) {
+      if (age &lt; 18) {
         setErrorForm({ ...errorForm, dateNaissance: "Vous devez être majeur" });
       } else {
         setErrorForm({ ...errorForm, dateNaissance: "" });
@@ -170,22 +198,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Formulaire #1</h1>
-        <ToastContainer />
-      </header>
-      <div className='body'>
-        <form className="Formulaire-view">
-          <div className='divInputsContainer'>
+    &lt;div className="App">
+      &lt;header className="App-header">
+        &lt;h1>Formulaire #1&lt;/h1>
+        &lt;ToastContainer />
+      &lt;/header>
+      &lt;div className='body'>
+        &lt;form className="Formulaire-view">
+          &lt;div className='divInputsContainer'>
             {textInput({ value: form.mail, onChange: (e) => handleChange(e, "mail"), hoverText: "Mail", error: errorForm.mail })}
-          </div>
-          <div className='divInputsContainer'>
+          &lt;/div>
+          &lt;div className='divInputsContainer'>
             {textInput({ value: form.nom, onChange: (e) => handleChange(e, "nom"), hoverText: "Nom", error: errorForm.nom })}
             {textInput({ value: form.prénom, onChange: (e) => handleChange(e, "prénom"), hoverText: "Prénom", error: errorForm.prénom })}
-            <div className='divInput'>
-              <label className="inputLabel">Date de naissance</label>
-              <input
+            &lt;div className='divInput'>
+              &lt;label className="inputLabel">Date de naissance&lt;/label>
+              &lt;input
                 type="date"
                 value={form.dateNaissance}
                 onChange={(e) => handleChange(e, "dateNaissance")}
@@ -195,15 +223,15 @@ function App() {
                 onBlur={(e) => e.target.style.borderColor = errorForm.dateNaissance ? "red" : "gray"}
                 style={{ borderColor: errorForm.dateNaissance ? "red" : "gray", flex: 1 }}
               />
-              <label className='errorText' data-testid="dateNaissanceError">{errorForm.dateNaissance}</label>
-            </div>
-          </div>
-          <div className='divInputsContainer'>
+              &lt;label className='errorText' data-testid="dateNaissanceError">{errorForm.dateNaissance}&lt;/label>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className='divInputsContainer'>
             {textInput({ value: form.ville, onChange: (e) => handleChange(e, "ville"), hoverText: "Ville", error: errorForm.ville })}
             {textInput({ value: form.codePostal, onChange: (e) => handleChange(e, "codePostal"), hoverText: "Code postal", error: errorForm.codePostal })}
-          </div>
-          <div className='divSubmitContainer'>
-            <button
+          &lt;/div>
+          &lt;div className='divSubmitContainer'>
+            &lt;button
               className='submitButton'
               type="submit"
               onClick={(e) => {
@@ -228,8 +256,8 @@ function App() {
               data-testid="submitButton"
             >
               Supprimer
-            </button>
-            <button
+            &lt;/button>
+            &lt;button
               className='submitButton'
               type="submit"
               onClick={(e) => {
@@ -243,11 +271,11 @@ function App() {
               data-testid="submitButton"
             >
               Valider
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            &lt;/button>
+          &lt;/div>
+        &lt;/form>
+      &lt;/div>
+    &lt;/div>
   );
 }
 
@@ -264,9 +292,9 @@ function App() {
  */
 function textInput({ value, onChange, placeholder = "", hoverText, error }) {
   return (
-    <div className='divInput'>
-      <label className="inputLabel">{hoverText}</label>
-      <input
+    &lt;div className='divInput'>
+      &lt;label className="inputLabel">{hoverText}&lt;/label>
+      &lt;input
         data-testid={hoverText}
         className='inputField'
         type="text"
@@ -277,8 +305,8 @@ function textInput({ value, onChange, placeholder = "", hoverText, error }) {
         onBlur={(e) => e.target.style.borderColor = error ? "red" : "gray"}
         style={{ borderColor: error ? "red" : "gray", flex: 1 }}
       />
-      <label className='errorText' data-testid={hoverText + "Error"}>{error}</label>
-    </div>
+      &lt;label className='errorText' data-testid={hoverText + "Error"}>{error}&lt;/label>
+    &lt;/div>
   );
 }
 
@@ -297,3 +325,26 @@ export const calculerAge = (dateNaissance) => {
 
 export default App;
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Feb 04 2024 20:23:05 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
