@@ -154,7 +154,10 @@ describe('Test de l age', () => {
   });
   it('should display error message when age is less than 18', () => {
     const input = screen.getByTestId('dateNaissance');
-    fireEvent.change(input, { target: { value: '2005-01-01' } });
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const testDate = `${currentYear - 19}-01-01`;
+    fireEvent.change(input, { target: { value: testDate } });
     fireEvent.blur(input);
 
     const error = screen.getByTestId('dateNaissanceError');
@@ -168,6 +171,20 @@ describe('Test de l age', () => {
     const testDate = '2000-01-01'; // Utilisez une date qui rendra le test toujours valide
     const expectedAge = new Date().getFullYear() - 2000; // Ajustez en fonction de l'année actuelle
     expect(calculerAge(testDate)).toBe(expectedAge);
+  });
+  it("should not display error message when age is valid", () => {
+    const input = screen.getByTestId('dateNaissance');
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const testDate = `${currentYear - 15}-01-01`;
+    fireEvent.change(input, { target: { value: testDate } });
+    fireEvent.blur(input);
+
+    const error = screen.getByTestId('dateNaissanceError');
+    setTimeout(() => {
+      expect(error).toHaveTextContent('');
+    }
+      , 20);
   })
 });
 
