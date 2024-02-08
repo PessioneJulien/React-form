@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, cleanup, waitFor } from '@testing-library/react';
 import App from './App';
-import { calculerAge } from './App';
+import { calculerAge } from './Fonctions';
 import { toast } from 'react-toastify';
 
 

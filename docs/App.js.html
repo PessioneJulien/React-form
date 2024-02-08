@@ -39,8 +39,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-/**
+import { postalCodeVerification, MailVerification, CodeVilleVerification, DateDeNaissance, ValidationPrenom, VerificationNom, calculerAge } from './Fonctions';
+/** 
  * Main component of the React application.
  * @returns {JSX.Element} The JSX element representing the form.
  */
@@ -88,73 +88,33 @@ function App() {
 
   // Perform validation for name, surname, and city fields
   useEffect(() => {
-    if (form.nom) {
-      const regex = /^[a-zA-ZÀ-ÿ-]+(?:\s[a-zA-ZÀ-ÿ-]+)*$/;
-      if (!regex.test(form.nom)) {
-        setErrorForm({ ...errorForm, nom: "Le nom ne doit pas contenir de chiffres ou de caractères spéciaux" });
-      } else {
-        setErrorForm({ ...errorForm, nom: "" });
-      }
-    }
+    VerificationNom(form, errorForm, setErrorForm)
+
+
   }, [form.nom]);
 
   useEffect(() => {
-    if (form.prénom) {
-      const regex = /^[a-zA-ZÀ-ÿ-]+(?:\s[a-zA-ZÀ-ÿ-]+)*$/;
-      if (!regex.test(form.prénom)) {
-        setErrorForm({ ...errorForm, prénom: "Le prénom ne doit pas contenir de chiffres ou de caractères spéciaux" });
-      } else {
-        setErrorForm({ ...errorForm, prénom: "" });
-      }
-    }
+    ValidationPrenom(form, errorForm, setErrorForm)
+
   }, [form.prénom]);
 
   useEffect(() => {
-    if (form.ville) {
-      const regex = /^[a-zA-ZÀ-ÿ-]+(?:\s[a-zA-ZÀ-ÿ-]+)*$/;
-      if (!regex.test(form.ville)) {
-        setErrorForm({ ...errorForm, ville: "La ville ne doit pas contenir de chiffres ou de caractères spéciaux" });
-      } else {
-        setErrorForm({ ...errorForm, ville: "" });
-      }
-    }
+    CodeVilleVerification(form, errorForm, setErrorForm)
   }, [form.ville]);
 
   // Perform validation for age field
   useEffect(() => {
-    if (form.dateNaissance) {
-      const age = calculerAge(form.dateNaissance);
-      if (age &lt; 18) {
-        setErrorForm({ ...errorForm, dateNaissance: "Vous devez être majeur" });
-      } else {
-        setErrorForm({ ...errorForm, dateNaissance: "" });
-      }
-    }
+    DateDeNaissance(form, errorForm, setErrorForm)
   }, [form.dateNaissance]);
 
   // Perform validation for postal code field
   useEffect(() => {
-    if (form.codePostal) {
-      if (form.codePostal.length !== 5) {
-        setErrorForm({ ...errorForm, codePostal: "Le code postal doit être composé de 5 chiffres" });
-      } else if (isNaN(form.codePostal)) {
-        setErrorForm({ ...errorForm, codePostal: "Le code postal doit être composé de chiffres" });
-      } else {
-        setErrorForm({ ...errorForm, codePostal: "" });
-      }
-    }
+    postalCodeVerification(form, errorForm, setErrorForm);
   }, [form.codePostal]);
 
   // Perform validation for email field
   useEffect(() => {
-    if (form.mail) {
-      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      if (!regex.test(form.mail)) {
-        setErrorForm({ ...errorForm, mail: "Le mail n'est pas valide" });
-      } else {
-        setErrorForm({ ...errorForm, mail: "" });
-      }
-    }
+    MailVerification(form, errorForm, setErrorForm);
   }, [form.mail]);
 
   /**
@@ -253,11 +213,12 @@ function App() {
                 marginRight: "10px",
                 cursor: "pointer"
               }}
-              data-testid="submitButton"
+              data-testid="cancelButton"
             >
               Supprimer
             &lt;/button>
             &lt;button
+              role='button'
               className='submitButton'
               type="submit"
               onClick={(e) => {
@@ -310,18 +271,7 @@ function textInput({ value, onChange, placeholder = "", hoverText, error }) {
   );
 }
 
-/**
- * Calculate the age based on the given date of birth.
- * @name calculerAge
- * @param {string} dateNaissance - The date of birth in the format "YYYY-MM-DD".
- * @returns {number} The calculated age.
- */
-export const calculerAge = (dateNaissance) => {
-  const date = new Date(dateNaissance);
-  const now = new Date();
-  const age = now.getFullYear() - date.getFullYear();
-  return age;
-};
+
 
 export default App;
 
@@ -335,13 +285,13 @@ export default App;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CodeVilleVerification">CodeVilleVerification</a></li><li><a href="global.html#DateDeNaissance">DateDeNaissance</a></li><li><a href="global.html#MailVerification">MailVerification</a></li><li><a href="global.html#ValidationPrenom">ValidationPrenom</a></li><li><a href="global.html#VerificationNom">VerificationNom</a></li><li><a href="global.html#calculerAge">calculerAge</a></li><li><a href="global.html#postalCodeVerification">postalCodeVerification</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Feb 04 2024 20:23:05 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Feb 08 2024 13:56:20 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
