@@ -225,11 +225,12 @@ function App() {
                 marginRight: "10px",
                 cursor: "pointer"
               }}
-              data-testid="submitButton"
+              data-testid="cancelButton"
             >
               Supprimer
             </button>
             <button
+              role='button'
               className='submitButton'
               type="submit"
               onClick={(e) => {

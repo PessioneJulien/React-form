@@ -27,7 +27,7 @@ describe('Test du toast', () => {
     fireEvent.change(inputCodePostal, { target: { value: '1234' } }); // Code postal invalide
 
     // Simulez la soumission du formulaire
-    const button = screen.getByRole('button');
+    const button = screen.getByTestId('submitButton');
     fireEvent.click(button);
 
     // Attendez que toast.error soit appelé
@@ -43,7 +43,7 @@ describe('Test du toast', () => {
     fireEvent.change(inputMail, { target: { value: 'xxxx@xx' } }); // Mail invalide
 
     // Simulez la soumission du formulaire
-    const button = screen.getByRole('button');
+    const button = screen.getByTestId('submitButton');
     fireEvent.click(button);
 
     // Attendez que toast.error soit appelé
@@ -55,7 +55,7 @@ describe('Test du toast', () => {
   );
   it("on affiche le toast si tout est correct", async () => {
     // définir form avec des valeurs valides
-    const submitButton = screen.getByRole('button');
+    const submitButton = screen.getByTestId('submitButton');
     const nomInput = screen.getByTestId("Nom");
     const prenomInput = screen.getByTestId("Prénom");
     const mailInput = screen.getByTestId("Mail");
@@ -88,7 +88,7 @@ describe('Test du localStorage', () => {
   );
   it('sauvegarde les données du formulaire dans le localStorage', () => {
     // définir form avec des valeurs valides
-    const submitButton = screen.getByRole('button');
+    const submitButton = screen.getByTestId('submitButton');
     const nomInput = screen.getByTestId("Nom");
     const prenomInput = screen.getByTestId("Prénom");
     const mailInput = screen.getByTestId("Mail");
@@ -120,7 +120,7 @@ describe('Test du localStorage', () => {
   });
   it('si le formulaire n\'est pas valide, les données ne sont pas enregistrées dans le localStorage', () => {
     // définir form avec des valeurs invalides
-    const submitButton = screen.getByRole('button');
+    const submitButton = screen.getByTestId('submitButton');
     const nomInput = screen.getByTestId("Nom");
     const prenomInput = screen.getByTestId("Prénom");
     const mailInput = screen.getByTestId("Mail");
@@ -411,11 +411,11 @@ describe('Validation de la soumission du formulaire', () => {
   });
 
   it('désactive le bouton de soumission si les champs requis ne sont pas remplis', () => {
-    const submitButton = screen.getByRole('button');
+    const submitButton = screen.getByTestId('submitButton');
     expect(submitButton).toBeDisabled();
   });
   it("active le bouton de soumission si les champs requis sont remplis", () => {
-    const submitButton = screen.getByRole('button');
+    const submitButton = screen.getByTestId('submitButton');
     const nomInput = screen.getByTestId("Nom");
     const prenomInput = screen.getByTestId("Prénom");
     const mailInput = screen.getByTestId("Mail");
