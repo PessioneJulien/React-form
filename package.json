@@ -2,6 +2,7 @@
   "name": "cours-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pessionejulien.github.io/React-form/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -17,7 +18,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "jsdoc": "jsdoc -c ./jsdoc.config.json -r -d ./docs"
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -r -d ./docs",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +45,7 @@
     "@babel/preset-env": "^7.23.9",
     "@testing-library/dom": "^9.3.4",
     "babel-jest": "^29.7.0",
+    "gh-pages": "^6.1.1",
     "jest": "^27.5.1",
     "jsdoc": "^4.0.2"
   }
